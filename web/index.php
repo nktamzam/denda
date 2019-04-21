@@ -74,7 +74,7 @@
               <div class="view overlay">
                 <img src="./img/produktuak/<?=$row['id']?>.jpg" class="card-img-top"
                   alt="">
-                <a>
+                <a href="./produktua.php?id=<?=$row['id']?>">
                   <div class="mask rgba-white-slight"></div>
                 </a>
               </div>
@@ -83,13 +83,13 @@
               <!--Card content-->
               <div class="card-body text-center">
                 <!--Category & Title-->
-                <a href="" class="grey-text">
+                <a href="./produktua.php?id=<?=$row['id']?>" class="grey-text">
                   <h5><?=$row['izena']?></h5>
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text">#
-                      <span class="badge badge-pill danger-color">NEW</span>
+                    <a href="" class="dark-grey-text"><?=$row['deskribapena']?>
+                    
                     </a>
                   </strong>
                 </h5>
