@@ -89,7 +89,7 @@
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text"><?//=$row['deskribapena']?>
+                    <a href="" class="dark-grey-text"><?=$categoria[$row['kategoria']]?>
                     
                     </a>
                   </strong>
