@@ -10,7 +10,7 @@
 
     <?php
     $id = $_GET["id"];
-    $result = $dbConn->query("SELECT * FROM produktuak where id = $id");
+    $result = $dbConn->query("SELECT *, produktuak_lang.izena as izena, produktuak_lang.deskribapena as deskribapena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE produktuak.id=$id and hizkuntza = 'eu';");
      while($row = $result->fetch(PDO::FETCH_ASSOC)) { 
        ?>	
 

@@ -41,6 +41,18 @@
               <span class="clearfix d-none d-sm-inline-block"> Carrito </span>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="./index.php?idioma=es"class="nav-link waves-effect">
+          <span class="flag-icon flag-icon-es"> ESP </span>
+          </a>
+          </li>
+          <li class="nav-item">
+            <a href="./index.php?idioma=eu"class="nav-link waves-effect">
+          <span class="flag-icon flag-icon-es"> EUS </span>
+          </a>
+          </li>
+
+
         </ul>
 
       </div>

@@ -3,7 +3,7 @@
 /* Setting variables */
 $langs = array('es', 'eu');
 $cookie_name = "idioma";
-$cookie_domain = ".aeg.eus";
+$cookie_domain = "enekotamayo.aegcloud.pro";
 
 if (!empty($_GET['idioma']) && in_array($_GET['idioma'], $langs)) {
 

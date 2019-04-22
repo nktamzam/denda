@@ -9,13 +9,11 @@
   <main style="padding-top: 90px">
     <div class="container">
 
-    <? $result = $dbConn->query("SELECT * FROM produktuak ORDER BY id DESC"); ?>
-
       <!--Navbar-->
       <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
         <!-- Navbar brand -->
-        <span class="navbar-brand">Categories:</span>
+        <span class="navbar-brand"><?=$tx_categorias?>:</span>
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -63,7 +61,10 @@
         <!--Grid row-->
         <div class="row wow fadeIn">
 
-        <?php while($row = $result->fetch(PDO::FETCH_ASSOC)) { ?>		
+        <?php 
+        $result = $dbConn->query("SELECT *, produktuak.id as id, produktuak_lang.izena as izena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE hizkuntza = '$lang';");
+        while($row = $result->fetch(PDO::FETCH_ASSOC)) { 
+          ?>		
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4">
 
@@ -88,7 +89,7 @@
                 </a>
                 <h5>
                   <strong>
-                    <a href="" class="dark-grey-text"><?=$row['deskribapena']?>
+                    <a href="" class="dark-grey-text"><?//=$row['deskribapena']?>
                     
                     </a>
                   </strong>
