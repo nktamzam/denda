@@ -1,5 +1,6 @@
-
-<? include "./includes/head.php"?>
+<?session_start();
+?>
+<?include "./includes/head.php"?>
 <body>
 
 <?php include "./includes/menu.php"?>
@@ -9,10 +10,10 @@
     <div class="container dark-grey-text mt-5">
 
     <?php
-    $id = $_GET["id"];
-    $result = $dbConn->query("SELECT *, produktuak_lang.izena as izena, produktuak_lang.deskribapena as deskribapena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE produktuak.id=$id and hizkuntza = 'eu';");
-     while($row = $result->fetch(PDO::FETCH_ASSOC)) { 
-       ?>	
+$id = $_GET["id"];
+$result = $dbConn->query("SELECT *, produktuak_lang.izena as izena, produktuak_lang.deskribapena as deskribapena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE produktuak.id=$id and hizkuntza = 'eu';");
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    ?>
 
       <!--Grid row-->
       <div class="row wow fadeIn">
@@ -45,7 +46,7 @@
 
             <p class="lead">
               <span class="mr-1">
-                
+
               <span><?=$row['salneurria']?>€</span>
             </p>
 
@@ -56,7 +57,7 @@
             <form class="d-flex justify-content-left">
               <!-- Default input -->
               <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" type="submit">Añadir al carrito
+              <button class="btn btn-primary btn-md my-0 p" onclick="add(<?=$id?>)"  type="button">Añadir al carrito
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 
@@ -71,7 +72,7 @@
       </div>
       <!--Grid row-->
 
-      <? } ?>
+      <?}?>
 
       <hr>
 
@@ -127,7 +128,9 @@
   </main>
   <!--Main layout-->
 
-  <?php include "./includes/pie.php" ?>
+  <?php include "./includes/pie.php"?>
+
+
 </body>
 
 </html>

@@ -1,4 +1,9 @@
-<? include "./includes/head.php"?>
+<?session_start();
+if (!isset($_SESSION["total"])) {
+    $_SESSION["total"] = 0;
+}
+?>
+<?include "./includes/head.php"?>
 <body>
 
 <?php include "./includes/menu.php"?>
@@ -61,10 +66,10 @@
         <!--Grid row-->
         <div class="row wow fadeIn">
 
-        <?php 
-        $result = $dbConn->query("SELECT *, produktuak.id as id, produktuak_lang.izena as izena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE hizkuntza = '$lang';");
-        while($row = $result->fetch(PDO::FETCH_ASSOC)) { 
-          ?>		
+        <?php
+$result = $dbConn->query("SELECT *, produktuak.id as id, produktuak_lang.izena as izena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE hizkuntza = '$lang';");
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    ?>
           <!--Grid column-->
           <div class="col-lg-3 col-md-6 mb-4">
 
@@ -90,7 +95,7 @@
                 <h5>
                   <strong>
                     <a href="" class="dark-grey-text"><?=$categoria[$row['kategoria']]?>
-                    
+
                     </a>
                   </strong>
                 </h5>
@@ -108,7 +113,7 @@
           </div>
           <!--Grid column-->
 
-        <? } ?>
+        <?}?>
 
         </div>
         <!--Grid row-->
@@ -160,9 +165,10 @@
   </main>
   <!--Main layout-->
 
- <?php include "./includes/pie.php" ?>
+ <?php include "./includes/pie.php"?>
 
-  
+
+
 </body>
 
 </html>

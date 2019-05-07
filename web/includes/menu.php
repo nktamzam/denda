@@ -17,9 +17,8 @@
 
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link waves-effect" href="#">Denda
-              <span class="sr-only">(current)</span>
+          <li class="nav-item">
+            <a class="nav-link waves-effect" href="./index.php">Denda
             </a>
           </li>
           <li class="nav-item">
@@ -35,8 +34,8 @@
         <!-- Right -->
         <ul class="navbar-nav nav-flex-icons">
           <li class="nav-item">
-            <a class="nav-link waves-effect">
-              <span class="badge red z-depth-1 mr-1"> 1 </span>
+            <a class="nav-link waves-effect" href="./saskia.php">
+              <span class="badge red z-depth-1 mr-1" id="kant"> <?=$_SESSION["total"]?> </span>
               <i class="fas fa-shopping-cart"></i>
               <span class="clearfix d-none d-sm-inline-block"> Carrito </span>
             </a>
