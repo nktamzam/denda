@@ -1,3 +1,8 @@
+  <?php
+if (!isset($_SESSION["total"])) {$_SESSION["total"] = 0;}
+if (!isset($_SESSION["salneurria"])) {$_SESSION["salneurria"] = 0;}
+?>
+
   <!-- Navbar -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
     <div class="container">

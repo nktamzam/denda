@@ -57,7 +57,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
             <form class="d-flex justify-content-left">
               <!-- Default input -->
               <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-              <button class="btn btn-primary btn-md my-0 p" onclick="add(<?=$id?>)"  type="button">Añadir al carrito
+              <button class="btn btn-primary btn-md my-0 p" onclick="add(<?=$id?>,<?=$row['salneurria']?>)"  type="button">Añadir al carrito
                 <i class="fas fa-shopping-cart ml-1"></i>
               </button>
 

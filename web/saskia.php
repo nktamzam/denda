@@ -212,26 +212,25 @@
           <?php foreach ($_SESSION['cart'] as $id => $kant) {
     $result = $dbConn->query("SELECT *, produktuak_lang.izena as izena, produktuak_lang.deskribapena as deskribapena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE produktuak.id=$id and hizkuntza = 'eu';");
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-        $totala += $row['salneurria'] * $kant;
         ?>
 
             <li class="list-group-item justify-content-between lh-condensed" id="li_<?=$id?>">
               <div>
                 <h6 class="my-0"><?=$row['izena']?></h6>
 
-                <a onclick="remove(<?=$id?>)"><span class="badge red z-depth-1 mr-1"> - </span></a>
-                <a onclick="add(<?=$id?>)"><span class="badge green z-depth-1 mr-1"> + </span></a>
+                <a onclick="remove(<?=$id?>,<?=$row['salneurria']?>)"><span class="badge red z-depth-1 mr-1"> - </span></a>
+                <a onclick="add(<?=$id?>,<?=$row['salneurria']?>)"><span class="badge green z-depth-1 mr-1"> + </span></a>
                 <span class="badge badge-light z-depth-1 mr-1" id="kant_<?=$id?>"> <?=$kant?> </span>
               </div>
 
-              <span class="text-muted" style="float:right;"><?=($row['salneurria'] * $kant)?>€</span>
+              <span class="text-muted" style="float:right;" id="saln_<?=$id?>"><?=$_SESSION["cart"][$id]["saln"]?>€</span>
             </li>
           <?php }}?>
 
 
             <li class="list-group-item d-flex justify-content-between">
               <span>Total</span>
-              <strong><?=$totala?>€</strong>
+              <strong id="salneurritotala"><?=$_SESSION["salneurria"]?>€</strong>
             </li>
           </ul>
           <!-- Cart -->

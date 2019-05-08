@@ -64,43 +64,45 @@
   </script>
 
 <script>
-function add(id) {
+function add(id,salneurria) {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               var resp = this.responseText;
               resp = JSON.parse(resp);
-                console.log (resp.cart[id]);
+                console.log (resp);
                 document.getElementById("kant").innerHTML=resp.total
                 document.getElementById("kant2").innerHTML=resp.total;
                 document.getElementById("kant_"+id).innerHTML=resp.cart[id];
+                //document.getElementById("saln_"+id).innerHTML=resp.cart.id.saln;
+                document.getElementById("salneurritotala").innerHTML=resp.salneurria+"€";
             }
         };
-        xhttp.open("GET","./saskia_kudeatu.php?add="+id,true);
+        xhttp.open("GET","./saskia_kudeatu.php?add="+id+"&salneurria="+salneurria,true);
         xhttp.send();
 
 };
 
-function remove(id) {
+function remove(id,salneurria) {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
               var resp = this.responseText;
               resp = JSON.parse(resp);
+              console.log (resp);
                 document.getElementById("kant").innerHTML=resp.total;
                 document.getElementById("kant2").innerHTML=resp.total;
+                //document.getElementById("saln_"+id).innerHTML=resp.cart[id].saln;
+                document.getElementById("salneurritotala").innerHTML=resp.salneurria+"€";
 
                 if (resp.cart[id] === undefined) {
                   document.getElementById("li_"+id).style.display="none";
-                  console.log ("unde");
                   } else {
                   document.getElementById("kant_"+id).innerHTML=resp.cart[id];
                   }
-
-
             }
         };
-        xhttp.open("GET","./saskia_kudeatu.php?remove="+id,true);
+        xhttp.open("GET","./saskia_kudeatu.php?remove="+id+"&salneurria="+salneurria,true);
         xhttp.send();
 
 };

@@ -1,8 +1,4 @@
-<?session_start();
-if (!isset($_SESSION["total"])) {
-    $_SESSION["total"] = 0;
-}
-?>
+<?session_start();?>
 <?include "./includes/head.php"?>
 <body>
 
