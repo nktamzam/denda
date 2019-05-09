@@ -64,6 +64,8 @@
   </script>
 
 <script>
+console.log (<?=json_encode($_SESSION);?>);
+
 function add(id,salneurria) {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
@@ -74,7 +76,7 @@ function add(id,salneurria) {
                 document.getElementById("kant").innerHTML=resp.total
                 document.getElementById("kant2").innerHTML=resp.total;
                 document.getElementById("kant_"+id).innerHTML=resp.cart[id];
-                //document.getElementById("saln_"+id).innerHTML=resp.cart.id.saln;
+                document.getElementById("saln_"+id).innerHTML=resp.sal[id]+"€";
                 document.getElementById("salneurritotala").innerHTML=resp.salneurria+"€";
             }
         };
@@ -92,7 +94,7 @@ function remove(id,salneurria) {
               console.log (resp);
                 document.getElementById("kant").innerHTML=resp.total;
                 document.getElementById("kant2").innerHTML=resp.total;
-                //document.getElementById("saln_"+id).innerHTML=resp.cart[id].saln;
+                document.getElementById("saln_"+id).innerHTML=resp.sal[id]+"€";
                 document.getElementById("salneurritotala").innerHTML=resp.salneurria+"€";
 
                 if (resp.cart[id] === undefined) {
@@ -111,7 +113,9 @@ function limpiar() {
         xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                console.log (this.responseText);
+              document.getElementById("faktura").style.display="none";
+              document.getElementById("kant").innerHTML="0";
+              document.getElementById("kant2").innerHTML="0";
             }
         };
         xhttp.open("GET","./saskia_kudeatu.php?clear=true",true);

@@ -139,7 +139,7 @@
           </h4>
 
           <!-- Cart -->
-          <ul class="list-group mb-3 z-depth-1">
+          <ul class="list-group mb-3 z-depth-1" id="faktura">
           <?php foreach ($_SESSION['cart'] as $id => $kant) {
     $result = $dbConn->query("SELECT *, produktuak_lang.izena as izena, produktuak_lang.deskribapena as deskribapena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE produktuak.id=$id and hizkuntza = 'eu';");
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
@@ -154,10 +154,9 @@
                 <span class="badge badge-light z-depth-1 mr-1" id="kant_<?=$id?>"> <?=$kant?> </span>
               </div>
 
-              <span class="text-muted" style="float:right;" id="saln_<?=$id?>"><?=$_SESSION["cart"][$id]["saln"]?>€</span>
+              <span class="text-muted" style="float:right;" id="saln_<?=$id?>"><?=$_SESSION["sal"][$id]?>€</span>
             </li>
           <?php }}?>
-
 
             <li class="list-group-item d-flex justify-content-between">
               <span>Total</span>
@@ -167,9 +166,7 @@
           <!-- Cart -->
 
 
-                <button onclick="limpiar()" class="btn btn-secondary btn-md waves-effect m-0" type="button" >Limpiar</button>
-
-
+          <button onclick="limpiar()" class="btn btn-secondary btn-md waves-effect m-0" type="button" >Limpiar</button>
 
         </div>
         <!--Grid column-->
@@ -180,7 +177,6 @@
     </div>
   </main>
   <!--Main layout-->
-
   <?php include "./includes/pie.php"?>
 
 </body>
