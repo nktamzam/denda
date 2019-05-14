@@ -1,5 +1,4 @@
-<?include "./php/idiomas.php";
-include "./php/conexion.php"?>
+
 <!DOCTYPE html>
 <html lang="en">
 

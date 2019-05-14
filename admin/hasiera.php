@@ -3,6 +3,8 @@ session_start();
 if ($_SESSION["usuario"] !== "admin" || $_SESSION["pass"] !== "admin") {
     header('Location: ./index.php');
 }
+include "./php/idiomas.php";
+include "./php/conexion.php";
 include './includes/head.php';?>
 
 
@@ -32,7 +34,7 @@ include './includes/head.php';?>
                                             <i class="zmdi zmdi-filter-list"></i>filters</button>
                                     </div>
                                     <div class="table-data__tool-right">
-                                        <a href="./berria.php"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                        <a href="./produktua.php"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
                                             <i class="zmdi zmdi-plus"></i>add item</button></a>
                                         <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                             <select class="js-select2" name="type">
@@ -84,10 +86,12 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                                 <td><?=$row['salneurria']?>€</td>
                                                 <td>
                                                     <div class="table-data-feature">
-
+                                                        <a href="./produktua.php?aldatu=<?=$row['id']?>" >
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                             <i class="zmdi zmdi-edit"></i>
                                                         </button>
+                                                        </a>
+                                                        <a href="./produktua.php?ezabatu=<?=$row['id']?>" >
                                                         <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                             <i class="zmdi zmdi-delete"></i>
                                                         </button>

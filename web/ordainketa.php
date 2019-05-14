@@ -51,11 +51,3 @@ foreach ($_SESSION['cart'] as $id => $kant) {
 
     $sql->execute();
 }
-
-function test_input($data)
-{
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-}
