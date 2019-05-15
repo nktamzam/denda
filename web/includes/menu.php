@@ -23,15 +23,15 @@ if (!isset($_SESSION["salneurria"])) {$_SESSION["salneurria"] = 0;}
         <!-- Left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="./index.php">Denda
+            <a class="nav-link waves-effect" href="./index.php"><?=$tx_denda?>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-effect" href="https://enekotamayo.aegcloud.pro/blog/" target="_blank">Gure bloga</a>
+            <a class="nav-link waves-effect" href="https://enekotamayo.aegcloud.pro/blog/" target="_blank"><?=$tx_gurebloga?></a>
           </li>
           <li class="nav-item">
             <a class="nav-link waves-effect" href="https://enekotamayo.aegcloud.pro/descargar-db/"
-              target="_blank">DB Deskarga</a>
+              target="_blank"><?=$tx_dbdeskarga?></a>
           </li>
 
         </ul>
@@ -42,16 +42,22 @@ if (!isset($_SESSION["salneurria"])) {$_SESSION["salneurria"] = 0;}
             <a class="nav-link waves-effect" href="./saskia.php">
               <span class="badge red z-depth-1 mr-1" id="kant"> <?=$_SESSION["total"]?> </span>
               <i class="fas fa-shopping-cart"></i>
-              <span class="clearfix d-none d-sm-inline-block"> Carrito </span>
+              <span class="clearfix d-none d-sm-inline-block"> <?=$tx_saskia?> </span>
             </a>
           </li>
           <li class="nav-item">
-            <a href="./index.php?idioma=es"class="nav-link waves-effect">
+            <a href="<?
+echo $_SERVER[REQUEST_URI];
+if (strstr($_SERVER[REQUEST_URI], '=')) {echo '&';} else {echo '?';}
+?>idioma=es" class="nav-link waves-effect">
           <span class="flag-icon flag-icon-es"> ESP </span>
           </a>
           </li>
           <li class="nav-item">
-            <a href="./index.php?idioma=eu"class="nav-link waves-effect">
+            <a href="<?
+echo $_SERVER[REQUEST_URI];
+if (strstr($_SERVER[REQUEST_URI], '=')) {echo '&';} else {echo '?';}
+?>idioma=eu"class="nav-link waves-effect">
           <span class="flag-icon flag-icon-es"> EUS </span>
           </a>
           </li>

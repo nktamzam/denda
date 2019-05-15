@@ -11,7 +11,7 @@ include './includes/head.php';?>
                         <div class="row">
                             <div class="col-md-12">
                                 <!-- DATA TABLE -->
-                                <h3 class="title-5 m-b-35">data table</h3>
+                                <h3 class="title-5 m-b-35">Produktuak</h3>
                                 <div class="table-data__tool">
                                     <div class="table-data__tool-left">
                                         <div class="rs-select2--light rs-select2--md">
@@ -35,7 +35,7 @@ include './includes/head.php';?>
                                     </div>
                                     <div class="table-data__tool-right">
                                         <a href="./produktua.php"><button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                                            <i class="zmdi zmdi-plus"></i>add item</button></a>
+                                            <i class="zmdi zmdi-plus"></i>Produktu berria</button></a>
                                         <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
                                             <select class="js-select2" name="type">
                                                 <option selected="selected">Export</option>
@@ -110,26 +110,30 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         </div>
                         <div class="row m-t-30">
                             <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Eskariak</h3>
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
                                     <table class="table table-borderless table-data3">
                                         <thead>
                                             <tr>
-                                                <th>date</th>
-                                                <th>type</th>
-                                                <th>description</th>
-                                                <th>status</th>
-                                                <th>price</th>
+                                                <th>Produktua</th>
+                                                <th>Bezeroa</th>
+                                                <th>Kantitatea</th>
+                                                <th>Egoera</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                        <?php
+$result = $dbConn->query("SELECT *, produktuak_lang.izena as izena FROM eskariak_produktuak INNER JOIN produktuak_lang ON eskariak_produktuak.id_produktoa = produktuak_lang.id_produktoa WHERE produktuak_lang.hizkuntza='eu' ORDER BY eskariak_produktuak.id_bezeroa DESC;");
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    ?>
                                             <tr>
-                                                <td>2018-09-29 05:57</td>
-                                                <td>Mobile</td>
-                                                <td>iPhone X 64Gb Grey</td>
-                                                <td class="process">Processed</td>
-                                                <td>$999.00</td>
+                                                <td><?=$row['izena']?></td>
+                                                <td><?=$row['id_bezeroa']?></td>
+                                                <td><?=$row['kantitatea']?></td>
+                                                <td><span class="status--process">Bidalita</span></td>
                                             </tr>
+<?}?>
                                         </tbody>
                                     </table>
                                 </div>

@@ -9,7 +9,7 @@
     <div class="container wow fadeIn">
 
       <!-- Heading -->
-      <h2 class="my-5 h2 text-center">Saskia</h2>
+      <h2 class="my-5 h2 text-center"><?=$tx_saskia?></h2>
 
       <!--Grid row-->
       <div class="row">
@@ -32,7 +32,7 @@
                   <!--firstName-->
                   <div class="md-form ">
                     <input type="text" id="izena" name="izena" class="form-control" pattern="([A-z])+" required>
-                    <label for="firstName" class="">Izena</label>
+                    <label for="firstName" class=""><?=$tx_izena?></label>
                   </div>
 
                 </div>
@@ -44,7 +44,7 @@
                   <!--lastName-->
                   <div class="md-form">
                     <input type="text" id="abizena" name="abizena" class="form-control" pattern="([A-z])+" required>
-                    <label for="lastName" class="">Abizena</label>
+                    <label for="lastName" class=""><?=$tx_abizena?></label>
                   </div>
 
                 </div>
@@ -56,7 +56,7 @@
               <!--email-->
               <div class="md-form mb-5">
                 <input type="text" id="email" name="email" class="form-control" placeholder="youremail@example.com" required>
-                <label for="email" class="">Email</label>
+                <label for="email" class=""><?=$tx_email?></label>
               </div>
 
               <!--pass-->
@@ -68,7 +68,7 @@
               <!--address-->
               <div class="md-form mb-5">
                 <input type="text" name="helbidea" class="form-control" placeholder="1234 Main St" pattern="([A-z1-9\s,.:º-])+" required>
-                <label for="address" class="">helbidea</label>
+                <label for="address" class=""><?=$tx_helbidea?></label>
               </div>
 
               <!--Grid row-->
@@ -77,14 +77,14 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-12 mb-4">
 
-                  <label for="country">Herria</label>
+                  <label for="country"><?=$tx_herria?></label>
                   <select class="custom-select d-block w-100" name="herria" required>
-                    <option value="">Aukeratu</option>
+                    <option value=""><?=$tx_aukeratu?></option>
                     <option>Donostia</option>
+                    <option>Hernani</option>
+                    <option>Añorga</option>
+                    <option>Usurbil</option>
                   </select>
-                  <div class="invalid-feedback">
-                    Please select a valid country.
-                  </div>
 
                 </div>
                 <!--Grid column-->
@@ -92,14 +92,13 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4">
 
-                  <label for="state">Herrialdea</label>
+                  <label for="state"><?=$tx_herrialdea?></label>
                   <select class="custom-select d-block w-100" name="herrialdea" required>
-                    <option value="">Aukeratu</option>
+                    <option value=""><?=$tx_aukeratu?></option>
                     <option>Espainia</option>
+                    <option>New Zeland</option>
                   </select>
-                  <div class="invalid-feedback">
-                    Please provide a valid state.
-                  </div>
+
 
                 </div>
                 <!--Grid column-->
@@ -107,19 +106,15 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4">
 
-                  <label for="zip">PK</label>
+                  <label for="zip"><?=$tx_pk?></label>
                   <input type="text" pattern="([0-9]{5})" class="form-control" name="pk" placeholder="" required>
-                  <div class="invalid-feedback">
-                    Zip code required.
-                  </div>
-
                 </div>
                 <!--Grid column-->
 
               </div>
               <!--Grid row-->
               <hr class="mb-4">
-              <button class="btn btn-primary btn-lg btn-block" type="submit">Comprar</button>
+              <button class="btn btn-primary btn-lg btn-block" type="submit"><?=$tx_erosi2?></button>
 
             </form>
 
@@ -134,7 +129,7 @@
 
           <!-- Heading -->
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Pedido</span>
+            <span class="text-muted"><?=$tx_eskaera?></span>
             <span class="badge badge-secondary badge-pill" id="kant2"><?=$_SESSION["total"]?></span>
           </h4>
 
@@ -159,14 +154,14 @@
           <?php }}?>
 
             <li class="list-group-item d-flex justify-content-between">
-              <span>Total</span>
+              <span><?=$tx_guztira?></span>
               <strong id="salneurritotala"><?=$_SESSION["salneurria"]?>€</strong>
             </li>
           </ul>
           <!-- Cart -->
 
 
-          <button onclick="limpiar()" class="btn btn-secondary btn-md waves-effect m-0" type="button" >Limpiar</button>
+          <button onclick="limpiar()" class="btn btn-secondary btn-md waves-effect m-0" type="button"><?=$tx_garbitu?></button>
 
         </div>
         <!--Grid column-->

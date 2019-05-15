@@ -49,9 +49,9 @@ if (isset($_GET["aldatu"])) {
 
 // produktoa.php formulario bidali dute $_POST["aldatu"]
 if (isset($_POST["aldatu"])) {
-    echo "aladtu behar da kontxo";
-    try {
 
+    try {
+        $id = test_input($_POST["id"]);
         $izena_eu = test_input($_POST["izena_eu"]);
         $izena_es = test_input($_POST["izena_es"]);
         $deskribapena_eu = test_input($_POST["deskribapena_eu"]);
@@ -60,23 +60,23 @@ if (isset($_POST["aldatu"])) {
         $salneurria = test_input($_POST["salneurria"]);
         $kantitatea = test_input($_POST["kantitatea"]);
 
-        $sql = $dbConn->prepare("UPDATE produktuak SET salneucrria = :salneurria, kantitatea = :kantitatea, kategoria = :kategoria WHERE id=$id");
-
+        $sql = $dbConn->prepare("UPDATE produktuak SET salneurria = :salneurria, kantitatea = :kantitatea, kategoria = :kategoria WHERE id=$id");
+        //$sql = $dbConn->prepare("UPDATE produktuak SET salneurria=1999, kantitatea = 10, kategoria = 1 WHERE id=$id");
         $sql->bindParam(':salneurria', $salneurria);
         $sql->bindParam(':kantitatea', $kantitatea);
         $sql->bindParam(':kategoria', $kategoria);
 
         $sql->execute();
 
-        // $sql = $dbConn->prepare("UPDATE produktuak_lang SET izena = :izena_eu, deskribapena = :deskribapena_eu  WHERE id_produktoa=$id AND hizkuntza='eu';
-        // UPDATE produktuak_lang SET izena = :izena_es, deskribapena = :deskribapena_es  WHERE id_produktoa=$id AND hizkuntza='es'");
+        $sql = $dbConn->prepare("UPDATE produktuak_lang SET izena = :izena_eu, deskribapena = :deskribapena_eu  WHERE id_produktoa=$id AND hizkuntza='eu';
+        UPDATE produktuak_lang SET izena = :izena_es, deskribapena = :deskribapena_es  WHERE id_produktoa=$id AND hizkuntza='es'");
 
-        // $sql->bindParam(':izena_eu', $izena_eu);
-        // $sql->bindParam(':izena_es', $izena_es);
-        // $sql->bindParam(':deskribapena_eu', $deskribapena_eu);
-        // $sql->bindParam(':deskribapena_es', $deskribapena_es);
+        $sql->bindParam(':izena_eu', $izena_eu);
+        $sql->bindParam(':izena_es', $izena_es);
+        $sql->bindParam(':deskribapena_eu', $deskribapena_eu);
+        $sql->bindParam(':deskribapena_es', $deskribapena_es);
 
-        //$sql->execute();
+        $sql->execute();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
@@ -134,6 +134,7 @@ include './includes/head.php';
                                         <form action="./produktua.php" method="post" class="form-horizontal">
                                         <?if (isset($_GET["aldatu"])) {?>
                                         <input type="Hidden" name="aldatu" value="bai">
+                                        <input type="Hidden" name="id" value="<?=$_GET["aldatu"]?>">
                                         <?}?>
 
                                             <div class="row form-group">
