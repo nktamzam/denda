@@ -21,10 +21,14 @@ $tx_abizena = "Abizena";
 $tx_email = "Emaila";
 $tx_helbidea = "Helbidea";
 $tx_herria = "Herria";
-$$tx_aukeratu = "Aukeratu";
-$$tx_herrialdea = "Herrialdea";
+$tx_aukeratu = "Aukeratu";
+$tx_herrialdea = "Herrialdea";
 $tx_pk = "PK";
 $tx_erosi2 = "EROSI";
 $tx_eskaera = "Eskaera";
 $tx_guztira = "Guztira";
 $tx_garbitu = "Garbitu";
+
+//ordainketa
+$tx_mila = "Mila esker zure erosketarengatik.";
+$tx_ordaniketa = "Ordainketa zuzena";

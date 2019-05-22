@@ -110,7 +110,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         </div>
                         <div class="row m-t-30">
                             <div class="col-md-12">
-                            <h3 class="title-5 m-b-35">Eskariak</h3>
+                            <h3 class="title-5 m-b-35">Eskatutako produktuak</h3>
                                 <!-- DATA TABLE-->
                                 <div class="table-responsive m-b-40">
                                     <table class="table table-borderless table-data3">
@@ -132,6 +132,49 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                                 <td><?=$row['id_bezeroa']?></td>
                                                 <td><?=$row['kantitatea']?></td>
                                                 <td><span class="status--process">Bidalita</span></td>
+                                            </tr>
+<?}?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE-->
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="copyright">
+                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-30">
+                            <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Eskariak</h3>
+                                <!-- DATA TABLE-->
+                                <div class="table-responsive m-b-40">
+                                    <table class="table table-borderless table-data3">
+                                        <thead>
+                                            <tr>
+                                                <th>Eskaria</th>
+                                                <th>Bezeroa</th>
+                                                <th>Salneurria</th>
+                                                <th>Data</th>
+                                                <th>Ordianketa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?php
+$result = $dbConn->query("SELECT *, bezeroak.izena AS izena FROM eskariak INNER JOIN bezeroak ON eskariak.id_bezeroa = bezeroak.id ORDER BY eskariak.id DESC;");
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+    ?>
+                                            <tr>
+                                                <td><?=$row['id']?></td>
+                                                <td><?=$row['izena']?></td>
+                                                <td><?=$row['salneurria']?></td>
+                                                <td><?=$row['data']?></td>
+                                                <td><span class="status--process">Ordainduta</span></td>
                                             </tr>
 <?}?>
                                         </tbody>

@@ -1,6 +1,9 @@
 <?session_start();
+if (!isset($_SESSION["total"])) {
+    header('Location: ./index.php');
+}
 
-include "./php/conexion.php";
+include "./includes/head.php";
 
 $izena = $abizena = $email = $pass = $helbidea = $herria = $herrialdea = $pk = "";
 
@@ -31,12 +34,12 @@ $last_id_bezeroa = $dbConn->lastInsertId();
 
 //echo "<br>" . $e->getMessage();
 
-$sql = $dbConn->prepare("INSERT INTO eskariak (id_bezeroa, salneurria)
-    VALUES (:id_bezeroa, :salneurria)");
+$sql = $dbConn->prepare("INSERT INTO eskariak (id_bezeroa, salneurria, data)
+    VALUES (:id_bezeroa, :salneurria, :data)");
 
 $sql->bindParam(':id_bezeroa', $last_id_bezeroa);
 $sql->bindParam(':salneurria', $_SESSION["salneurria"]);
-//$sql->bindParam(':ordainketa', "true");
+$sql->bindParam(':data', date("Y-m-d H:i:s"));
 
 $sql->execute();
 
@@ -51,3 +54,55 @@ foreach ($_SESSION['cart'] as $id => $kant) {
 
     $sql->execute();
 }
+
+foreach ($_SESSION['cart'] as $id => $kant) {
+
+    $sql = $dbConn->prepare("UPDATE produktuak SET kantitatea = (kantitatea - :kantitatea)  WHERE id=$id");
+
+    $sql->bindParam(':kantitatea', $kant);
+
+    $sql->execute();
+}
+
+?>
+
+<body>
+
+<?php include "./includes/menu.php"?>
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container wow fadeIn">
+
+      <!-- Heading -->
+      <h2 class="my-5 h2 text-center"><?=$tx_ordaniketa?></h2>
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-8 mb-4">
+
+          <!--Card-->
+          <div>
+            <p><?=$tx_mila?></p>
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+
+      </div>
+      <!--Grid row-->
+
+    </div>
+  </main>
+  <!--Main layout-->
+  <?php include "./includes/pie.php"?>
+  <script>setTimeout(limpiar, 2000);</script>
+
+</body>
+
+</html>
+

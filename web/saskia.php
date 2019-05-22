@@ -77,7 +77,7 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-12 mb-4">
 
-                  <label for="country"><?=$tx_herria?></label>
+                  <label for="herria"><?=$tx_herria?></label>
                   <select class="custom-select d-block w-100" name="herria" required>
                     <option value=""><?=$tx_aukeratu?></option>
                     <option>Donostia</option>
@@ -92,7 +92,7 @@
                 <!--Grid column-->
                 <div class="col-lg-4 col-md-6 mb-4">
 
-                  <label for="state"><?=$tx_herrialdea?></label>
+                  <label for="herrialdea"><?=$tx_herrialdea?></label>
                   <select class="custom-select d-block w-100" name="herrialdea" required>
                     <option value=""><?=$tx_aukeratu?></option>
                     <option>Espainia</option>
