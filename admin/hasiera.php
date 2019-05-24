@@ -108,46 +108,15 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                 <!-- END DATA TABLE -->
                             </div>
                         </div>
-                        <div class="row m-t-30">
-                            <div class="col-md-12">
-                            <h3 class="title-5 m-b-35">Eskatutako produktuak</h3>
-                                <!-- DATA TABLE-->
-                                <div class="table-responsive m-b-40">
-                                    <table class="table table-borderless table-data3">
-                                        <thead>
-                                            <tr>
-                                                <th>Produktua</th>
-                                                <th>Bezeroa</th>
-                                                <th>Kantitatea</th>
-                                                <th>Egoera</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <?php
-$result = $dbConn->query("SELECT *, produktuak_lang.izena as izena FROM eskariak_produktuak INNER JOIN produktuak_lang ON eskariak_produktuak.id_produktoa = produktuak_lang.id_produktoa WHERE produktuak_lang.hizkuntza='eu' ORDER BY eskariak_produktuak.id_bezeroa DESC;");
-while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-    ?>
-                                            <tr>
-                                                <td><?=$row['izena']?></td>
-                                                <td><?=$row['id_bezeroa']?></td>
-                                                <td><?=$row['kantitatea']?></td>
-                                                <td><span class="status--process">Bidalita</span></td>
-                                            </tr>
-<?}?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- END DATA TABLE-->
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="copyright">
-                                    <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
+
+
+
+
+
+
+
+
 
                     <div class="row m-t-30">
                             <div class="col-md-12">
@@ -157,6 +126,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                     <table class="table table-borderless table-data3">
                                         <thead>
                                             <tr>
+                                                <th>Ikusi</th>
                                                 <th>Eskaria</th>
                                                 <th>Bezeroa</th>
                                                 <th>Salneurria</th>
@@ -166,15 +136,18 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                         </thead>
                                         <tbody>
                                         <?php
-$result = $dbConn->query("SELECT *, bezeroak.izena AS izena FROM eskariak INNER JOIN bezeroak ON eskariak.id_bezeroa = bezeroak.id ORDER BY eskariak.id DESC;");
+$result = $dbConn->query("SELECT *, bezeroak.izena AS izena FROM eskariak INNER JOIN bezeroak ON eskariak.id_bezeroa = bezeroak.id ORDER BY eskariak.id DESC LIMIT 10;");
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     ?>
                                             <tr>
+                                                <td><button type="button" onclick="consulta(<?=$row['id_bezeroa']?>)" class="btn btn-success btn-sm"><i class="fa fa-search"></i></button>
+</td>
                                                 <td><?=$row['id']?></td>
                                                 <td><?=$row['izena']?></td>
                                                 <td><?=$row['salneurria']?></td>
                                                 <td><?=$row['data']?></td>
-                                                <td><span class="status--process">Ordainduta</span></td>
+                                                <td><span class="status--process">Ordainduta</span>
+                                                </td>
                                             </tr>
 <?}?>
                                         </tbody>
@@ -192,5 +165,44 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                         </div>
                     </div>
 
+
+<!-- The Modal -->
+<div class="modal" id="Modal" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="mediumModalLabel">Detalles del pedido</h5>
+							<button onclick="document.getElementById('Modal').style.display='none';" type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">×</span>
+							</button>
+						</div>
+						<div class="modal-body" id="detalle">
+
+						</div>
+						<div class="modal-footer">
+							<button onclick="document.getElementById('Modal').style.display='none';" type="button" class="btn btn-danger" data-dismiss="modal">itxi</button>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+<script>
+function consulta(id) {
+        xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var resp = this.responseText;
+              console.log (resp);
+                document.getElementById("detalle").innerHTML=resp;
+                document.getElementById("Modal").style.display="block";
+
+            }
+        };
+        xhttp.open("GET","./pedido_detalle.php?id="+id,true);
+        xhttp.send();
+
+};
+</script>
 
         <?include "./includes/footer.php"?>
