@@ -43,13 +43,15 @@ $sql->bindParam(':data', date("Y-m-d H:i:s"));
 
 $sql->execute();
 
+$last_id_eskaria = $dbConn->lastInsertId();
+
 foreach ($_SESSION['cart'] as $id => $kant) {
 
-    $sql = $dbConn->prepare("INSERT INTO eskariak_produktuak (id_produktoa, id_bezeroa, kantitatea)
-    VALUES (:id_produktoa, :id_bezeroa, :kantitatea)");
+    $sql = $dbConn->prepare("INSERT INTO eskariak_produktuak (id_produktoa, id_eskaria, kantitatea)
+    VALUES (:id_produktoa, :id_eskaria, :kantitatea)");
 
     $sql->bindParam(':id_produktoa', $id);
-    $sql->bindParam(':id_bezeroa', $last_id_bezeroa);
+    $sql->bindParam(':id_eskaria', $last_id_eskaria);
     $sql->bindParam(':kantitatea', $kant);
 
     $sql->execute();

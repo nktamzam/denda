@@ -67,7 +67,7 @@ include './includes/head.php';?>
                                         <tbody>
 
                                         <?php
-$result = $dbConn->query("SELECT *, produktuak.id as id, produktuak_lang.izena as izena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE hizkuntza = '$lang';");
+$result = $dbConn->query("SELECT *, produktuak.id as id, produktuak_lang.izena as izena FROM `produktuak` inner JOIN produktuak_lang on produktuak.id = produktuak_lang.id_produktoa WHERE hizkuntza = '$lang' ORDER BY kantitatea ASC;");
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     ?>
                                             <tr class="tr-shadow">
@@ -81,7 +81,9 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                                 <td><?=$row['izena']?></td>
                                                 <td><?=$categoria[$row['kategoria']]?></td>
                                                 <td>
-                                                    <span class="status--process"><?=$row['kantitatea']?></span>
+                                                    <span style="color:<?php
+if ($row['kantitatea'] < 20) {echo "red";} else if ($row['kantitatea'] < 50) {echo "orange";} else {echo "black";}
+    ?>"><?=$row['kantitatea']?></span>
                                                 </td>
                                                 <td><?=$row['salneurria']?>€</td>
                                                 <td>
@@ -136,12 +138,11 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
                                         </thead>
                                         <tbody>
                                         <?php
-$result = $dbConn->query("SELECT *, bezeroak.izena AS izena FROM eskariak INNER JOIN bezeroak ON eskariak.id_bezeroa = bezeroak.id ORDER BY eskariak.id DESC LIMIT 10;");
+$result = $dbConn->query("SELECT salneurria, data, eskariak.id, bezeroak.izena AS izena FROM eskariak INNER JOIN bezeroak ON eskariak.id_bezeroa = bezeroak.id ORDER BY eskariak.id DESC LIMIT 10;");
 while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     ?>
                                             <tr>
-                                                <td><button type="button" onclick="consulta(<?=$row['id_bezeroa']?>)" class="btn btn-success btn-sm"><i class="fa fa-search"></i></button>
-</td>
+                                                <td><button type="button" onclick="consulta(<?=$row['id']?>)" class="btn btn-success btn-sm"><i class="fa fa-search"></i></button></td>
                                                 <td><?=$row['id']?></td>
                                                 <td><?=$row['izena']?></td>
                                                 <td><?=$row['salneurria']?></td>
